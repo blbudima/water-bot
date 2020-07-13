@@ -1,0 +1,30 @@
+{
+  "name": "water-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot that reminds you to do daily essentials.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blbudima/water-bot.git"
+  },
+  "license": "ISC",
+  "author": "blbudima",
+  "bugs": {
+    "url": "https://github.com/blbudima/water-bot/issues"
+  },
+  "homepage": "https://github.com/blbudima/water-bot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "discord.js": "^12.2.0",
+    "ffmpeg-static": "^4.2.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "2.0.5"
+  }
+}
