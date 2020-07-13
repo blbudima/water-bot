@@ -2,8 +2,6 @@ const audio = require('../audio-paths.json');
 const config = require('../config.json');
 
 const connections = new Map();
-// TODO: CREATE A MAP FOR ALL CONNECTIONS - MAKES IT SIMPLER
-// KEY - connection, VALUE - ionterval
 
 module.exports = {
   name: 'summon',
@@ -17,9 +15,10 @@ module.exports = {
         .then((connection) => {
           if (!connections.has(connection)) {
             console.log(`Connected to: ${connection.channel}`);
+            message.channel.send('Ready for action!');
             const interval = setInterval(() => {
               // set your preferred audio message here.
-              const audioMessage = audio.drinkwater;
+              const audioMessage = audio.drinkwaterlong;
               const dispatcher = connection.play(audioMessage, {
                 volume: 1.75,
               });
@@ -33,6 +32,7 @@ module.exports = {
               if (connection.channel.members.size === 1) {
                 clearInterval(connections.get(connection));
                 console.log(`Disconnected from: ${connection.channel}`);
+                message.channel.send('No one is with me - disconnecting...');
                 connection.disconnect();
                 return connections.delete(connection);
               }

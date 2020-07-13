@@ -1,6 +1,3 @@
-const audio = require('../audio-paths.json');
-const config = require('../config.json');
-
 module.exports = {
   name: 'disconnect',
   aliases: ['d'],
