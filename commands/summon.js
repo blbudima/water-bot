@@ -11,8 +11,12 @@ module.exports = {
         .join()
         .then((connection) => {
           if (!connections.has(connection)) {
-            console.log(`Connected to: ${connection.channel}`);
-            message.channel.send('Ready for action!');
+            message.channel
+              .send('Ready for action!')
+              .then(() => {
+                console.log(`Connected to: ${connection.channel}`);
+              })
+              .catch(console.error);
             const interval = setInterval(() => {
               // set your preferred audio message here.
               const audioMessage = 'https://boboben.s-ul.eu/wgdMQnmz';
@@ -28,8 +32,12 @@ module.exports = {
               dispatcher.on('error', console.error);
               if (connection.channel.members.size === 1) {
                 clearInterval(connections.get(connection));
-                console.log(`Disconnected from: ${connection.channel}`);
-                message.channel.send('No one is with me - disconnecting...');
+                message.channel
+                  .send('No one is with me - disconnecting...')
+                  .then(() => {
+                    console.log(`Disconnected from: ${connection.channel}`);
+                  })
+                  .error(console.error);
                 connection.disconnect();
                 return connections.delete(connection);
               }
@@ -39,7 +47,12 @@ module.exports = {
         })
         .catch(console.error);
     } else {
-      return message.reply('you are not in a voice channel!');
+      return message
+        .reply('you are not in a voice channel!')
+        .then(() => {
+          console.log(`Sent a reply to ${message.author.username}`);
+        })
+        .catch(console.error);
     }
   },
 };

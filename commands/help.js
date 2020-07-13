@@ -64,6 +64,11 @@ module.exports = {
       } second(s)`,
     );
 
-    message.channel.send(data, { split: true });
+    message.channel
+      .send(data, { split: true })
+      .then(() => {
+        console.log('Sent a help message');
+      })
+      .catch(console.error);
   },
 };
