@@ -1,5 +1,3 @@
-const config = require('../config.json');
-
 const connections = new Map();
 
 module.exports = {
@@ -35,7 +33,7 @@ module.exports = {
                 connection.disconnect();
                 return connections.delete(connection);
               }
-            }, config.defaultTimer * 60000);
+            }, process.env.defaultTimer * 60000);
             connections.set(connection, interval);
           }
         })

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const { Client, Collection } = require('discord.js');
-const config = require('./config.json');
 
 const cooldowns = new Collection();
 const client = new Client();
@@ -21,10 +20,12 @@ client.once('ready', () => {
 
 client.on('message', (message) => {
   // if the message is not a designated command, then ignore
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+  if (!message.content.startsWith(process.env.prefix) || message.author.bot) {
+    return;
+  }
 
   // extract arguments and command name
-  const args = message.content.slice(config.prefix.length).split(/ +/);
+  const args = message.content.slice(process.env.prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   // extract command from command name
@@ -49,7 +50,7 @@ client.on('message', (message) => {
     let reply = `You didn't provide any arguments, ${message.author}!`;
 
     if (command.usage) {
-      reply += `\nThe proper usage would be: \`${config.prefix}${command.name} ${command.usage}\``;
+      reply += `\nThe proper usage would be: \`${process.env.prefix}${command.name} ${command.usage}\``;
     }
 
     return message.channel.send(reply);
@@ -62,7 +63,8 @@ client.on('message', (message) => {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
-  const cooldownAmount = (command.cooldown || config.defaultCooldown) * 1000;
+  const cooldownAmount =
+    (command.cooldown || process.env.defaultCooldown) * 1000;
 
   if (timestamps.has(message.author.id)) {
     const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
@@ -89,4 +91,4 @@ client.on('message', (message) => {
   }
 });
 
-client.login(config.token);
+client.login(process.env.token);
