@@ -1,4 +1,3 @@
-const audio = require('../audio-paths.json');
 const config = require('../config.json');
 
 const connections = new Map();
@@ -18,7 +17,7 @@ module.exports = {
             message.channel.send('Ready for action!');
             const interval = setInterval(() => {
               // set your preferred audio message here.
-              const audioMessage = audio.drinkwaterlong;
+              const audioMessage = 'https://boboben.s-ul.eu/wgdMQnmz';
               const dispatcher = connection.play(audioMessage, {
                 volume: 1.75,
               });
