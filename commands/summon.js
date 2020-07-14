@@ -1,5 +1,7 @@
 const connections = new Map();
 
+// TODO: FIX SINGULAR CONNECTIONS - ATM IT DISCONNECTS FROM ALL SERVERS :/
+
 module.exports = {
   name: 'summon',
   aliases: ['s'],
