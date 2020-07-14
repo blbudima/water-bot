@@ -1,5 +1,7 @@
 const config = require('../config.json');
 
+// TODO: FIX SINGULAR CONNECTIONS - ATM IT DISCONNECTS FROM ALL SERVERS :/
+
 const connections = new Map();
 
 module.exports = {
@@ -14,10 +16,15 @@ module.exports = {
         .then((connection) => {
           if (!connections.has(connection)) {
             console.log(`Connected to: ${connection.channel}`);
-            message.channel.send('Ready for action!');
+            message.channel
+              .send('Ready for action!')
+              .then(() => {
+                console.log(`Connection message sent to: ${message.channel}`);
+              })
+              .catch(console.error);
             const interval = setInterval(() => {
               // set your preferred audio message here.
-              const audioMessage = 'https://boboben.s-ul.eu/wgdMQnmz';
+              const audioMessage = 'https://boboben.s-ul.eu/water-bot/6AqjhMFb';
               const dispatcher = connection.play(audioMessage, {
                 volume: 1.75,
               });
@@ -31,40 +38,31 @@ module.exports = {
               if (connection.channel.members.size === 1) {
                 clearInterval(connections.get(connection));
                 console.log(`Disconnected from: ${connection.channel}`);
-                message.channel.send('No one is with me - disconnecting...');
+                message.channel
+                  .send('No one is with me - disconnecting...')
+                  .then(() => {
+                    console.log(
+                      `Disconnection message sent to: ${connection.channel}`,
+                    );
+                  })
+                  .catch(console.error);
                 connection.disconnect();
                 return connections.delete(connection);
               }
-            }, config.defaultTimer * 60000);
+            }, 7000);
+            // config.defaultTimer * 60000
             connections.set(connection, interval);
           }
         })
         .catch(console.error);
     } else {
-      return message.reply('you are not in a voice channel!');
+      console.log(`Attempted to send a reply to ${message.author.username}`);
+      return message
+        .reply('you are not in a voice channel!')
+        .then(() => {
+          console.log(`Reply sent`);
+        })
+        .catch(console.error);
     }
   },
 };
-
-// if (interval) {
-//   clearInterval(interval);
-//   console.log('Cleared interval!');
-// } else {
-//   message.channel.send('Ready for action!');
-// }
-// interval = setInterval(() => {
-//   // set your preferred audio message here.
-//   const audioMessage = audio.drinkwater;
-//   const dispatcher = connection.play(audioMessage, {
-//     volume: 2,
-//   });
-//   dispatcher.on('finish', () => {
-//     /* nothing for now */
-//   });
-//   dispatcher.on('error', console.error);
-//   if (connection.channel.members.size === 1) {
-//     connection.disconnect();
-//     return clearInterval(interval);
-//   }
-// }, config.defaultTimer * 60000);
-// // 60000 ms = 1 min
