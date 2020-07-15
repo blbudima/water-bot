@@ -11,7 +11,7 @@ module.exports = {
 
     if (!args.length) {
       data.push(
-        'Hello! I am a bot designed to remind you to drink water (for now).',
+        'Hello! I am a bot designed to remind you to do some daily essentials.',
       );
       data.push("Here's a list of all my commands:");
       data.push(commands.map((command) => command.name).join(', '));
