@@ -1,8 +1,26 @@
 const config = require('../config.json');
 
-// TODO: FIX SINGULAR CONNECTIONS - ATM IT DISCONNECTS FROM ALL SERVERS :/
-
 const connections = new Map();
+
+// Set preferred audio files here.
+const audioFiles = [
+  'https://boboben.s-ul.eu/water-bot/M8gkhhlf',
+  'https://boboben.s-ul.eu/water-bot/fAIUJOrL',
+  'https://boboben.s-ul.eu/water-bot/wgdMQnmz',
+  'https://boboben.s-ul.eu/water-bot/sAEWaK7X',
+  'https://boboben.s-ul.eu/water-bot/F5EeJjBo',
+];
+// stetch, posture, drink-water-long, engage, please_stop
+
+const weightedRandom = (prob) => {
+  let i,
+    sum = 0;
+  const r = Math.random();
+  for (i in prob) {
+    sum += prob[i];
+    if (r <= sum) return i;
+  }
+};
 
 module.exports = {
   name: 'summon',
@@ -23,13 +41,20 @@ module.exports = {
               })
               .catch(console.error);
             const interval = setInterval(() => {
-              // set your preferred audio message here.
-              const audioMessage = 'https://boboben.s-ul.eu/water-bot/6AqjhMFb';
-              const dispatcher = connection.play(audioMessage, {
+              const fileIndex = weightedRandom({
+                0: 0.25,
+                1: 0.25,
+                2: 0.25,
+                3: 0.125,
+                4: 0.125,
+              });
+              const dispatcher = connection.play(audioFiles[fileIndex], {
                 volume: 1.75,
               });
               dispatcher.on('start', () => {
-                console.log(`Started on: ${connection.channel}`);
+                console.log(
+                  `Started on: ${connection.channel}. Played ${audioFiles[fileIndex]}`,
+                );
               });
               dispatcher.on('finish', () => {
                 console.log(`Finished on: ${connection.channel}`);
@@ -49,8 +74,7 @@ module.exports = {
                 connection.disconnect();
                 return connections.delete(connection);
               }
-            }, 7000);
-            // config.defaultTimer * 60000
+            }, config.defaultTimer * 60000);
             connections.set(connection, interval);
           }
         })
