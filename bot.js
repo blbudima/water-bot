@@ -1,23 +1,33 @@
+// main bot javascript file
+
+// file system
 const fs = require('fs');
+
+// discord.js Client and Collection
 const { Client, Collection } = require('discord.js');
 
+// prepare cooldowns, client, and commands
 const cooldowns = new Collection();
 const client = new Client();
 client.commands = new Collection();
 
+// extract commands through file-system
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js'));
 
+// add commands to client
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 }
 
+// log ready into console
 client.once('ready', () => {
   console.log('Ready for action!');
 });
 
+// react on member message
 client.on('message', (message) => {
   // if the message is not a designated command, then ignore
   if (!message.content.startsWith(process.env.prefix) || message.author.bot) {
@@ -91,4 +101,5 @@ client.on('message', (message) => {
   }
 });
 
+// log into discord via token
 client.login(process.env.token);

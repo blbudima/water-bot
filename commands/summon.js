@@ -1,6 +1,6 @@
 const connections = new Map();
 
-// Set preferred audio files here.
+// Set preferred audio files here
 const audioFiles = [
   'https://boboben.s-ul.eu/water-bot/M8gkhhlf',
   'https://boboben.s-ul.eu/water-bot/fAIUJOrL',
@@ -8,8 +8,15 @@ const audioFiles = [
   'https://boboben.s-ul.eu/water-bot/sAEWaK7X',
   'https://boboben.s-ul.eu/water-bot/F5EeJjBo',
 ];
-// stetch, posture, drink-water-long, engage, please_stop
+// current order: stetch, posture, drink-water-long, engage, please_stop
 
+/**
+ * weightedRandom takes in a list of probablities per index
+ * and returns the index of the array to use.
+ *
+ * @param {Object} prob a mapping of key-value pairs such that the index
+ * is the key and its probablity is the value.
+ */
 const weightedRandom = (prob) => {
   let i,
     sum = 0;
@@ -20,16 +27,19 @@ const weightedRandom = (prob) => {
   }
 };
 
+// main module for summon
 module.exports = {
   name: 'summon',
   aliases: ['s'],
   description: 'Summons me to your current voice channel.',
   guildOnly: true,
   execute(message, args) {
+    // only join if the member is in a voice channel
     if (message.member.voice.channel) {
       message.member.voice.channel
         .join()
         .then((connection) => {
+          // only record the connection if it doesn't already exist
           if (!connections.has(connection)) {
             console.log(`Connected to: ${connection.channel}`);
             message.channel
@@ -40,13 +50,15 @@ module.exports = {
                 );
               })
               .catch(console.error);
+            // create interval for repeating message
             const interval = setInterval(() => {
+              // set weighted probablities here
               const fileIndex = weightedRandom({
-                0: 0.25,
-                1: 0.25,
-                2: 0.25,
-                3: 0.125,
-                4: 0.125,
+                0: 0.3,
+                1: 0.3,
+                2: 0.3,
+                3: 0.075,
+                4: 0.025,
               });
               const dispatcher = connection.play(audioFiles[fileIndex], {
                 volume: 1.75,

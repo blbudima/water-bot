@@ -1,14 +1,16 @@
+// main module for help
 module.exports = {
   name: 'help',
   description:
     'Sends info about me and all of my commands, or request info about a specific command.',
   aliases: ['commands'],
   usage: '<command name>',
-  cooldown: 2,
+  cooldown: 5,
   execute(message, args) {
     const data = [];
     const { commands } = message.client;
 
+    // if there are no arguments, send the full help message
     if (!args.length) {
       data.push(
         'Hello! I am a bot designed to remind you to do some daily essentials.',
@@ -36,6 +38,7 @@ module.exports = {
         });
     }
 
+    // otherwise, return information about a specific command
     const name = args[0].toLowerCase();
     const command =
       commands.get(name) ||
