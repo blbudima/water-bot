@@ -1,6 +1,6 @@
 const connections = new Map();
 
-// Set preferred audio files here
+// set your preferred audio files here
 const audioFiles = [
   'https://boboben.s-ul.eu/water-bot/M8gkhhlf',
   'https://boboben.s-ul.eu/water-bot/fAIUJOrL',
@@ -20,9 +20,11 @@ const audioFiles = [
 const weightedRandom = (prob) => {
   let i,
     sum = 0;
+  // picks a random number between 0 (inclusive) and 1 (exclusive)
   const r = Math.random();
   for (i in prob) {
     sum += prob[i];
+    // if the total sum is greater than the random number selected, return i
     if (r <= sum) return i;
   }
 };
