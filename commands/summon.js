@@ -41,12 +41,13 @@ module.exports = {
               })
               .catch(console.error);
             const interval = setInterval(() => {
+              // set weighted probabilities here
               const fileIndex = weightedRandom({
-                0: 0.25,
-                1: 0.25,
-                2: 0.25,
-                3: 0.125,
-                4: 0.125,
+                0: 0.3,
+                1: 0.3,
+                2: 0.3,
+                3: 0.075,
+                4: 0.025,
               });
               const dispatcher = connection.play(audioFiles[fileIndex], {
                 volume: 1.75,
