@@ -2,7 +2,7 @@ const config = require('../config.json');
 
 const connections = new Map();
 
-// Set preferred audio files here.
+// set your preferred audio files here
 const audioFiles = [
   'https://boboben.s-ul.eu/water-bot/M8gkhhlf',
   'https://boboben.s-ul.eu/water-bot/fAIUJOrL',
@@ -10,14 +10,23 @@ const audioFiles = [
   'https://boboben.s-ul.eu/water-bot/sAEWaK7X',
   'https://boboben.s-ul.eu/water-bot/F5EeJjBo',
 ];
-// stetch, posture, drink-water-long, engage, please_stop
+// current order: stetch, posture, drink-water-long, engage, please_stop
 
+/**
+ * weightedRandom takes in a list of probablities per index
+ * and returns the index of the array to use.
+ *
+ * @param {Object} prob a mapping of key-value pairs such that the index
+ * is the key and its probablity is the value.
+ */
 const weightedRandom = (prob) => {
   let i,
     sum = 0;
+  // picks a random number between 0 (inclusive) and 1 (exclusive)
   const r = Math.random();
   for (i in prob) {
     sum += prob[i];
+    // if the total sum is greater than the random number selected, return i
     if (r <= sum) return i;
   }
 };
