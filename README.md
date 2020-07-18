@@ -14,7 +14,7 @@ This bot was developed from scratch using [discord.js](https://discord.js.org/#/
 
 ## Set-up
 
-Before you download the code and deploy water-bot, you will first need to create a [Discord application](https://discord.com/developers/applications). Go ahead and click the link, select `New Application`, then name your bot whatever you want. I named my application `maple-bot`.
+Before you download the code and deploy water-bot, you will first need to create a [Discord application](https://discord.com/developers/applications). Go ahead and click the link, select `New Application`, then name your bot whatever you want. I named my application `water-bot`.
 
 Once your application has been created, click on `Bot` in the `SETTINGS` menu to the left. Go ahead and click `Add Bot` to create a bot for this application.
 
