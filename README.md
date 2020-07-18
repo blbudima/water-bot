@@ -38,18 +38,24 @@ You should also look into [node.js](https://nodejs.org/en/), a JavaScript runtim
 
 **NOTE: Even if you choose not to make any changes to the bot, you MUST create a file titled `config.json` to the top directory of water-bot. This file is used to log-in your bot as well as to define several other variables used by the bot.**
 
-Go ahead and create a file called `config.json` within the top directory of water-bot, then paste the following code inside the file.
+Go ahead and create a file named `config.json` within the top directory of water-bot, then paste the following code inside the file.
 
 ```
 {
   "token": "your-token-here",
-  "prefix": "!!",
+  "prefix": "##",
   "defaultCooldown": 3,
   "defaultTimer": 13.33
 }
 ```
 
-**Replace `your-token-here` with your personal bot token.**
+**Replace `your-token-here` with your personal bot token (remember where to find this?).**
+
+For `prefix` value, enter a character sequence that represents the prefix to activate the bot commands (e.g. you might have needed to type `!` or a `;;` to activate certain bots - this is the prefix!). I have mine set at `##`.
+
+For `defaultCooldown`, enter an integer that represents the cooldown between commands in seconds that will help prevent command-spamming for your bot. I have mine set at `3`.
+
+For `defaultTimer`, enter a number the represents the interval between reminders in minutes. I have mine set at `13.33`.
 
 **If you are able to code the bot to your personal preference and are able to test it as well, then you should already know how to deploy your bot!** You can stop here if you want. Otherwise, if you still need assistance in deploying the bot, then the next section covers how to deploy the bot through your local computer.
 
@@ -59,15 +65,17 @@ The code on this current branch (pc-host) is designed to be deployed locally (me
 
 **These following steps assume that you are running a Windows machine.**
 
-Once you have made your changes to your bot (or maybe you didn't), go ahead and open up a `PowerShell` window (search for `powershell` in your start menu).
+First of all, download and install [node.js](https://nodejs.org/en/). Download the LTS version.
 
-Change your directory
+Once you have made your changes to your bot (or maybe you didn't), go ahead and open up the water-bot directory in Windows Explorer.
 
-Once you are in your application, select the `Deploy` tab. For the `Deployment method`, select `GitHub`. Search for your `repo-name` (if you did not make any changes, then it should be `water-bot`), then `Connect` your repository. Once connected, I recommend that you `Enable Automatic Deploys`. Ensure that you also select the correct branch to deploy (if you did not make any changes, then it should be on `master`.)
+Press `shift + right-click` on an empty area in your Windows Explorer, then select `Open PowerShell window here`. A Windows PowerShell menu should pop up.
 
-Once finished with the `Deploy` tab, select the `Settings` tab. Within `Buildpacks`, click on `Add buildpack`, and select `nodejs`. Click on `Reveal Config Vars` to, well, reveal your configuration variables. **Here is where you insert four different variables: `token`, `defaultCooldown`, `defaultTimer`, and `prefix`**. Each of these listed variables will be the `KEY`, and each of these `KEY`'s have their own `VALUE`.
+From here, type `npm install`. This will install all the packages needed for your project.
 
-If you have successfully deployed the bot, then you should be able to see it online in your Discord server. Another way to check if the bot is working is to select `More` then select `View logs`. Within your logs, you should see this output: `Ready for action!`.
+Once everything has finished installing, type `npm start`.
+
+If you have successfully deployed the bot, then you should be able to see it online in your Discord server. Another way to check if the bot is working is to check the output of PowerShell. Within the output, you should see this output: `Ready for action!`.
 
 ## Wrap-up
 
