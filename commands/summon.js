@@ -54,7 +54,7 @@ module.exports = {
               .catch(console.error);
             // create interval for repeating message
             const interval = setInterval(() => {
-              // set weighted probablities here
+              // set weighted probabilities here
               const fileIndex = weightedRandom({
                 0: 0.3,
                 1: 0.3,
