@@ -1,5 +1,7 @@
 # water-bot
 
+**This is the `master` branch. This branch is designed for the bot to be hosted via cloud service.**
+
 Water-bot is a simple Discord bot that verbally reminds you to do your daily essentials, such as:
 
 - Drinking water
