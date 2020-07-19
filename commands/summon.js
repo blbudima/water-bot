@@ -112,7 +112,7 @@ module.exports = {
               audio = audioFiles.male;
               break;
             case 'female':
-              audio = femaleProb;
+              audio = audioFiles.female;
               break;
             default:
               console.error('Something went wrong extracting audio!');
