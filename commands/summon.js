@@ -90,6 +90,7 @@ module.exports = {
             })
             .catch(console.error);
           // extract probability rate
+          // BE SURE TO EDIT THIS SWITCH CASE BASED ON YOUR AUDIO FILES
           let probs = undefined;
           switch (args[0]) {
             case 'simple':
@@ -106,6 +107,7 @@ module.exports = {
               return message.reply('something went wrong. Please try again.');
           }
           // extract audio files
+          // BE SURE TO EDIT THIS SWITCH CASE BASED ON YOUR AUDIO FILES
           let audio = undefined;
           switch (args[0]) {
             case 'simple':
@@ -115,7 +117,7 @@ module.exports = {
               audio = audioFiles.male;
               break;
             case 'female':
-              audio = femaleProb;
+              audio = audioFiles.female;
               break;
             default:
               console.error('Something went wrong extracting audio!');
