@@ -79,4 +79,4 @@ If you have successfully deployed the bot, then you should be able to see it onl
 
 ## Wrap-up
 
-Congratulations - you deployed your own personal water-bot! Join a voice channel, type `##s` into a chat channel, and enjoy your personal reminders!
+Congratulations - you deployed your own personal water-bot! Join a voice channel, type `##s simple` into a chat channel, and enjoy your personal reminders!
