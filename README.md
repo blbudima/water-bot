@@ -8,7 +8,7 @@ Water-bot is a simple Discord bot that verbally reminds you to do your daily ess
 - Standing up and stretch
 - Fixing your (sitting) posture
 
-This bot was developed from scratch using [discord.js](https://discord.js.org/#/).
+This bot was developed from scratch using [discord.js](https://discord.js.org/#/), [opus](https://github.com/discordjs/opus), and [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static).
 
 **I do not have any intentions of scaling this bot publicly**. I made water-bot for my friends and for fun, so I am releasing my source in hopes that others can use it for their own recreational use as well. You are also welcome to use this bot as a template for your own bot or for coding practice.
 
